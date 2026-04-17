@@ -8,14 +8,14 @@ public class Integrante
     private string foto;
     private List<Familiar> familiares = new List<Familiar>() 
     {
-     new Familiar(555, "Juan", "Padre"),
-     new Familiar("Maria", "Madre"),
-     new Familiar("Ana", "Hermana")
+     new Familiar(111, "Epe", "Madre"),
+     new Familiar(222, "Estefano", "Padre"),
+     new Familiar(333, "Agustin", "Hermano")
     }
     private List<Intereses> intereses = new List<Intereses>()
     {
-        new Intereses("Futbol"),
-        new Intereses("Musica"),
+        new Intereses("Cantar"),
+        new Intereses("Comprar"),
         new Intereses("Viajar")
     }
 
@@ -25,8 +25,6 @@ public class Integrante
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.foto = foto;
-        this.familiares = new List<string>();
-        this.intereses = new List<string>();
     }
 
     public int obtenerDni()
@@ -57,4 +55,3 @@ public class Integrante
         return this.intereses;
     }
 }
-
