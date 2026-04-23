@@ -5,7 +5,7 @@ namespace TP01.Models
 {
   public class grupo
   {
-    public Dictionary<int, Integrante> Integrantes 
+    public Dictionary<int, Integrante> Integrantes { get; set; }
 
     public grupo()
     {
@@ -15,12 +15,17 @@ namespace TP01.Models
 
     public void cargaDatosManual()
     {
-        Integrante integrante1 = new Integrante(50289096, "Iara Cohen Lozie", new DateTime(2010, 5, 8), "foto1.jpg");
-        Integrante integrante2 = new Integrante(49553387, "Magali Waldfogiel", new DateTime(2009, 7, 24), "foto2.jpg");
-       
-    
-        Integrantes.Add(integrante1.obtenerDni(), integrante1);
-        Integrantes.Add(integrante2.obtenerDni(), integrante2);
+      
+     List<string> famIara = new List<string> { "Mamá Carla" };
+     List<string> intIara = new List<string> { "Jugar al hockey" };
+     Integrante integrante1 = new Integrante(50289096, "Iara Cohen Lozie", new DateTime(2010, 5, 8), "iara.png", famIara, intIara);
+
+      List<string> famMagali = new List<string> { "Mamá Estefania" };
+      List<string> intMagali = new List<string> { "Bailar" };
+      Integrante integrante2 = new Integrante(49553387, "Magali Waldfogiel", new DateTime(2009, 7, 24), "magui.png", famMagali, intMagali);
+
+      Integrantes.Add(integrante1.obtenerDni(), integrante1);
+      Integrantes.Add(integrante2.obtenerDni(), integrante2);
    
     }
 
@@ -31,12 +36,11 @@ namespace TP01.Models
     
     public Integrante getIntegrante(int dni)
     {
-      if (Integrantes == null) 
-        else (Integrantes.ContainsKey(dni))
-        {
-            return Integrantes[dni];
-        }
-        return null;
+      if (Integrantes != null && Integrantes.ContainsKey(dni))
+      {
+        return Integrantes[dni];
+      }
+      return null;
   }
 }
 }

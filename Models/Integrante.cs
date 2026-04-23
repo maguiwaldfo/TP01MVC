@@ -12,14 +12,14 @@ public class Integrante
     private List<string> familiares;
     private List<string> intereses;
 
-    public Integrante(int dni, string nombre, DateTime fechaNacimiento, string foto, List<string> familiares, List<string> intereses)
+    public Integrante(int dni, string nombre, DateTime fechaNacimiento, string foto, List<string> familiares = null, List<string> intereses = null)
     {
         this.dni = dni;
         this.nombre = nombre;
         this.fechaNacimiento = fechaNacimiento;
         this.foto = foto;
-        this.familiares = new familiares;
-        this.intereses = new intereses;
+        this.familiares = familiares;
+        this.intereses = intereses;
     }
 
     public int obtenerDni()

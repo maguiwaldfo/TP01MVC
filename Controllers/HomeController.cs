@@ -19,21 +19,15 @@ public class HomeController : Controller
         return View();
     }
     
-    public IActionResult SelectIntegrante(int dni)
-    {
-        return View();
-    }
     public IActionResult Privacy()
     {
         return View();
     }
-
-
-    public IActionResult selectIntegrante(int dni)
+    [HttpGet]
+    public IActionResult SelectIntegrante(int dni)
     {
-        
         grupo g = new grupo();
-        Dictionary<int, integrante> integrantes = g.devolverIntegrantes();
+        Dictionary<int, Integrante> integrantes = g.devolverIntegrantes();
         Integrante integrante = null;
         if (integrantes != null && integrantes.ContainsKey(dni))
         {
