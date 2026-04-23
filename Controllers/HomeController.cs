@@ -28,25 +28,20 @@ public class HomeController : Controller
         return View();
     }
 
-    [HttpGet]
+
     public IActionResult selectIntegrante(int dni)
     {
-        // Inicializar grupo (carga datos manuales) y obtener el diccionario
+        
         grupo g = new grupo();
-        var integrantes = g.devolverIntegrantes();
-
-        // Buscar el integrante por DNI
+        Dictionary<int, integrante> integrantes = g.devolverIntegrantes();
         Integrante integrante = null;
         if (integrantes != null && integrantes.ContainsKey(dni))
         {
             integrante = integrantes[dni];
         }
-
-        // Cargar en ViewBag: la información del integrante y el DNI buscado
         ViewBag.Integrante = integrante;
         ViewBag.DNI = dni;
 
-        // Retornar la vista infoIntegrante
         return View("infoIntegrante");
     }
 

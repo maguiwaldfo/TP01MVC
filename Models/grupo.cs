@@ -15,13 +15,13 @@ namespace TP01.Models
 
     public void cargaDatosManual()
     {
-        Integrante integrante1 = new Integrante(12345678, "Juan Perez", new DateTime(1990, 5, 15), "foto1.jpg");
-        Integrante integrante2 = new Integrante(87654321, "Maria Gomez", new DateTime(1985, 10, 20), "foto2.jpg");
-        Integrante integrante3 = new Integrante(11223344, "Carlos Rodriguez", new DateTime(1995, 3, 30), "foto3.jpg");
+        Integrante integrante1 = new Integrante(50289096, "Iara Cohen Lozie", new DateTime(2010, 5, 8), "foto1.jpg");
+        Integrante integrante2 = new Integrante(49553387, "Magali Waldfogiel", new DateTime(2009, 7, 24), "foto2.jpg");
+       
     
         Integrantes.Add(integrante1.obtenerDni(), integrante1);
         Integrantes.Add(integrante2.obtenerDni(), integrante2);
-        Integrantes.Add(integrante3.obtenerDni(), integrante3);
+   
     }
 
     public Dictionary<int, Integrante> devolverIntegrantes()
