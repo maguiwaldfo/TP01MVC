@@ -6,6 +6,7 @@
 	var dni = ViewBag.DNI ?? 0;
 
 	string fotoFile = "";
+	string fotoUrl = "";
 	if (integrante != null)
 	{
 		fotoFile = integrante.obtenerFoto() ?? "";
@@ -13,24 +14,38 @@
 		{
 			fotoFile = fotoFile + ".png";
 		}
+
+		if (fotoFile == "iara.png")
+		{
+			fotoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='purple'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='white'%3EIARA%3C/text%3E%3C/svg%3E";
+		}
+		else if (fotoFile == "magui.png")
+		{
+			fotoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='green'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='white'%3EMAGUI%3C/text%3E%3C/svg%3E";
+		}
+		else
+		{
+			fotoUrl = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='gray'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ENo+Image%3C/text%3E%3C/svg%3E";
+		}
 	}
 }
 
-<div class="container mt-4">
+<div>
 	<h2>Información del integrante</h2>
 
 	@if (integrante != null)
 	{
-		<div class="row">
-			<div class="col-md-4">
-				<img src="@Url.Content("~/images/" + fotoFile)" class="img-fluid img-thumbnail" alt="@integrante.obtenerNombre()" />
-			</div>
-			<div class="col-md-8">
+		<div>
+	
+				<img src="@fotoUrl" alt="Foto de @integrante.obtenerNombre()" />
+			 
+		
+			<div>
 				<h3>@integrante.obtenerNombre()</h3>
-				<p><strong>DNI:</strong> @integrante.obtenerDni()</p>
-				<p><strong>Fecha de nacimiento:</strong> @integrante.obtenerFechaNacimiento().ToString("dd/MM/yyyy")</p>
+				<p>DNI:@integrante.obtenerDni()</p>
+				<p>Fecha de nacimiento:@integrante.obtenerFechaNacimiento()</p>
 
-				<p><strong>Familiares:</strong></p>
+				<p>Familiares:</p>
 				@if (integrante.obtenerFamiliares() != null && integrante.obtenerFamiliares().Count > 0)
 				{
 					<ul>
@@ -45,13 +60,13 @@
 					<p>No hay familiares cargados.</p>
 				}
 
-				<p><strong>Intereses:</strong></p>
+				<p>Intereses:</p>
 				@if (integrante.obtenerIntereses() != null && integrante.obtenerIntereses().Count > 0)
 				{
 					<ul>
-					@foreach (var it in integrante.obtenerIntereses())
+					@foreach (var i in integrante.obtenerIntereses())
 					{
-						<li>@it</li>
+						<li>@i</li>
 					}
 					</ul>
 				}
@@ -68,8 +83,8 @@
 		<p>No se encontró el integrante con DNI @dni.</p>
 	}
 
-	<div class="mt-3">
-		<a class="btn btn-secondary" href="@Url.Action("Index", "Home")">Volver al índice</a>
+	<div >
+		<a href="@Url.Action("Index", "Home")">Volver al índice</a>
 	</div>
-</div>
+
 

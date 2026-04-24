@@ -1,11 +1,12 @@
 ﻿@using TP01.Models
 @{
     ViewData["Title"] = "Home Page";
-    var grupo = ViewBag.Grupo as grupo;
+    Grupo grupo = ViewBag.Grupo as Grupo;
 }
 
-<div class="text-center">
-    <h1>Bienvenido</h1>
+<div>
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='80'%3E%3Crect width='150' height='80' fill='navy'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='18' fill='white'%3ELOGO%3C/text%3E%3C/svg%3E" alt="Logo" />
+    <h1>Bienvenido a AMOOORCH</h1>
     <p>Lista de Integrantes del Grupo</p>
 
     @if (grupo != null && grupo.devolverIntegrantes() != null)
@@ -21,6 +22,6 @@
     }
     else
     {
-        <p>No hay integrantes cargados.</p>
+        <p>No hay integrantes cargados</p>
     }
 </div>
