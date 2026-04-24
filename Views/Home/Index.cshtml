@@ -1,29 +1,26 @@
 ﻿@using TP01.Models
 @{
-    ViewData["Title"] = "Detalle del Integrante";
-    integrante Integrante = ViewBag.Integrante as integrante;
+    ViewData["Title"] = "Home Page";
+    var grupo = ViewBag.Grupo as grupo;
 }
 
 <div class="text-center">
-    <h2>Información del Integrante</h2>
+    <h1>Bienvenido</h1>
+    <p>Lista de Integrantes del Grupo</p>
 
-    @if (Integrante != null)
+    @if (grupo != null && grupo.devolverIntegrantes() != null)
     {
-        <div>
-            <img src="@Url.Content("~/images/" + Integrante.obtenerFoto())" />
-            
-            <h3>@Integrante.obtenerNombre()</h3>
-            
-            <p>DNI: @ViewBag.DNI</p>
-            
-            <p><b>DNI del alumno:</b> @ViewBag.DNI</p>
-        </div>
+        <ul >
+        @foreach (var integrante in grupo.devolverIntegrantes().Values)
+        {
+            <li>
+                <a href="@Url.Action("SelectIntegrante", "Home", new { dni = integrante.obtenerDni() })">@integrante.obtenerNombre()</a>
+            </li>
+        }
+        </ul>
     }
     else
     {
-        <p>No se encontró al integrante.</p>
+        <p>No hay integrantes cargados.</p>
     }
-
-    <br />
-    <a href="@Url.Action("Index", "Home")">Volver al Inicio</a>
 </div>

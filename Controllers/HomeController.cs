@@ -15,7 +15,7 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        ViewBag.Grupo = new grupo(); 
+        ViewBag.Grupo = new Grupo(); 
         return View();
     }
     
@@ -26,7 +26,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult SelectIntegrante(int dni)
     {
-        grupo g = new grupo();
+        Grupo g = new Grupo();
         Dictionary<int, Integrante> integrantes = g.devolverIntegrantes();
         Integrante integrante = null;
         if (integrantes != null && integrantes.ContainsKey(dni))
@@ -36,7 +36,7 @@ public class HomeController : Controller
         ViewBag.Integrante = integrante;
         ViewBag.DNI = dni;
 
-        return View("infoIntegrante");
+        return View("infointegrante");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
