@@ -1,81 +1,49 @@
 @using TP01.Models
 
-@{
-    ViewData["Title"] = "Info Integrante";
+	@{
+	ViewData["Title"] = "Info Integrante";
     Integrante integrante = ViewBag.Integrante as Integrante;
-
+    
     int dni = 0;
     if (ViewBag.DNI != null)
     {
         dni = (int)ViewBag.DNI;
     }
-
-    string fotoFile = "";
-    string fotoUrl = "";
-    string fotoFallback = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Crect width='120' height='120' fill='gray'/%3E%3Ctext x='50%' y='50%' dominant-baseline='middle' text-anchor='middle' font-size='14' fill='white'%3ENo+Image%3C/text%3E%3C/svg%3E";
-    if (integrante != null)
-    {
-        fotoFile = integrante.obtenerFoto() ?? "";
-        if (!fotoFile.Contains('.'))
-        {
-            fotoFile = fotoFile + ".png";
-        }
-
-        if (!string.IsNullOrEmpty(fotoFile))
-        {
-            fotoUrl = Url.Content("~/images/" + fotoFile);
-        }
-        else
-        {
-            fotoUrl = fotoFallback;
-        }
-    }
 }
 
-<h2>Información del integrante</h2>
+<h2>Información del Integrante</h2>
 
 @if (integrante != null)
 {
     <div>
-        @{
-            string imgSrc = string.IsNullOrEmpty(fotoUrl) ? fotoFallback : fotoUrl;
+        @if (integrante.obtenerNombre() == "Iara")
+        {
+              <img src="Iara.png" alt="Foto de Iara">
         }
-        <img src="@imgSrc" alt="Foto de @integrante.obtenerNombre()" onerror="this.onerror=null;this.src='@fotoFallback';" />
-        <p>Nombre de archivo: @fotoFile</p>
+        else if (integrante.obtenerNombre() == "Magui")
+        {
+            <img src="Magui.png" alt="Foto de Magui">
+        }
 
         <h3>@integrante.obtenerNombre()</h3>
         <p>DNI: @integrante.obtenerDni()</p>
         <p>Fecha de nacimiento: @integrante.obtenerFechaNacimiento()</p>
 
-        <p>Familiares:</p>
-        @if (integrante.obtenerFamiliares() != null && integrante.obtenerFamiliares().Count > 0)
-        {
-            <ul>
+        <h4>Familiares:</h4>
+        <ul>
             @foreach (string familiar in integrante.obtenerFamiliares())
             {
                 <li>@familiar</li>
             }
-            </ul>
-        }
-        else
-        {
-            <p>No hay familiares cargados.</p>
-        }
+        </ul>
 
-        <p>Intereses:</p>
-        @if (integrante.obtenerIntereses() != null && integrante.obtenerIntereses().Count > 0)
-        {
-            <ul>
+        <h4>Intereses:</h4>
+        <ul>
             @foreach (string interes in integrante.obtenerIntereses())
             {
                 <li>@interes</li>
             }
-            </ul>
-        }
-        else
-        {
-            <p>No hay intereses cargados.</p>
-        }
+        </ul>
     </div>
 }
 else
@@ -84,4 +52,4 @@ else
 }
 
 <br />
-<a href="@Url.Action("Index", "Home")">Volver al índice</a>
+<a href="@Url.Action("Index", "Home")">Volver al Index</a>
